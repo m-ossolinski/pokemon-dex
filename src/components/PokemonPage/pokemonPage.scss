@@ -1,0 +1,32 @@
+.pokemon-list {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  margin: 100px auto;
+
+  &__card {
+    align-self: center;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    text-align: center;
+    min-height: 250px;
+
+    &-image {
+      align-self: center;
+      width: 120px;
+    }
+
+    &-name {
+      background-color: turquoise;
+      padding: 8px 0;
+      text-transform: capitalize;
+    }
+
+    &-abilities {
+      background-color: darkslategrey;
+      color: #fff;
+      margin: 2px 0;
+    }
+  }
+}
