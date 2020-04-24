@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 300px 300px 300px;
   margin: 100px auto;
+  min-height: 100vh;
 
   &__card {
     align-self: center;
@@ -29,4 +30,28 @@
       margin: 2px 0;
     }
   }
+
+  &__page-switch {
+    display: flex;
+    padding: 0 0 50px 0;
+    justify-content: center;
+
+    &-btn {
+      background: darkturquoise;
+      border: 0 none;
+      color: darkblue;
+      font-weight: 600;
+      margin: 0 8px;
+      padding: 18px;
+    }
+
+    &-btn-disabled {
+      background: darkgrey;
+      color: #fff;
+    }
+  }
+}
+
+.pokemon-limit-select {
+
 }

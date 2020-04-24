@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import {FetchDataHook} from "../../hooks/FetchDataHook";
+import { FetchDataHook } from '../../hooks/FetchDataHook';
+import { Loader } from '../Loader/Loader';
 
 const PokemonCard = (props) => {
   const { pokemonName } = props;
@@ -16,13 +17,12 @@ const PokemonCard = (props) => {
   return (
     <Fragment>
       {dataLoading ? (
-        <div>loading</div>
+        <Loader />
       ) : (
         <div className="pokemon-list__card">
           <h2 className="pokemon-list__card-name">
             {pokemonName}
           </h2>
-
           <img
             src={sprites && sprites.front_default}
             alt={pokemonName}
