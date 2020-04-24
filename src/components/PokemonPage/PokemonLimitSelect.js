@@ -11,21 +11,34 @@ const limitOptions = [
 ];
 
 const customStyles = {
+  control: (base, state) => ({
+    ...base,
+    border: state.isFocused ? 0 : 0,
+    // This line disable the blue border
+    boxShadow: state.isFocused ? 0 : 0,
+    '&:hover': {
+      border: state.isFocused ? 0 : 0
+    }
+  }),
   container: (provided, state) => ({
     ...provided,
-    border: '1px solid red',
-    width: 100,
+    width: 115,
+    border: '5px solid red',
   }),
   option: (provided, state) => ({
-    ...provided,
-    borderBottom: '1px dotted pink',
-    color: state.isSelected ? 'red' : 'blue',
-    padding: 20,
+    padding: 10,
     width: 100,
+    margin: 0,
+    '&:hover': {
+      background: 'red',
+    }
   }),
-  control: () => ({
-    // none of react-select's styles are passed to <Control />
-    width: 100,
+  indicatorsContainer: () => ({
+    display: 'none',
+  }),
+  menuList: (state) => ({
+    overflow: 'hidden',
+    width: 105,
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
@@ -48,8 +61,8 @@ const PokemonLimitSelect = () => {
   }
 
   return (
-    <div>
-      select
+    <div className="pokemon-limit">
+      <p>Results number:</p>
       <Select
         styles={customStyles}
         placeholder={activeLimit}

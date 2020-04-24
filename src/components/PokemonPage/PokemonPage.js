@@ -7,7 +7,7 @@ import './pokemonPage.scss';
 
 const PokemonPage = () => {
   return (
-    <div>
+    <div className="pokemon-page">
       <PokemonLimitSelect />
       <PokemonList />
       <PokemonListPageSwitch />
