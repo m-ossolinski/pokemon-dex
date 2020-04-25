@@ -1,14 +1,14 @@
-import React from 'react';
-import PokemonPage from './PokemonPage/PokemonPage';
-import PokemonDataProvider from "../contexts/PokemonDataContext";
+import React, { Fragment } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes } from '../routes';
 
 function App() {
   return (
-    <PokemonDataProvider>
-      <div className="App">
-        <PokemonPage />
-      </div>
-    </PokemonDataProvider>
+    <BrowserRouter>
+      <Fragment>
+        <Routes />
+      </Fragment>
+    </BrowserRouter>
   );
 }
 

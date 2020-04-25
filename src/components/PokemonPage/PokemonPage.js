@@ -5,7 +5,7 @@ import { PokemonListPageSwitch } from './PokemonListPageSwitch';
 
 import './pokemonPage.scss';
 
-const PokemonPage = () => {
+export const PokemonPage = () => {
   return (
     <div className="pokemon-page">
       <PokemonLimitSelect />
@@ -15,4 +15,4 @@ const PokemonPage = () => {
   )
 }
 
-export default PokemonPage;
+export default {PokemonPage}
