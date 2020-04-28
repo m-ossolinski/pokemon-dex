@@ -1,0 +1,16 @@
+.navigation-bar {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+
+  &__nav-list {
+    display: flex;
+
+    &-item {
+      list-style: none;
+      padding: 0 16px;
+      margin: 0 4px;
+      background: #5b786d;
+    }
+  }
+}

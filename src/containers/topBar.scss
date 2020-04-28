@@ -1,0 +1,15 @@
+@import "src/styles/index.scss";
+
+.top-bar {
+  &__navigation {
+    display: grid;
+    padding: 0 100px;
+    grid-template-columns: 200px 1fr;
+    background: $primary-color;
+
+    &-logo {
+      width: 200px;
+      height: 150px;
+    }
+  }
+}

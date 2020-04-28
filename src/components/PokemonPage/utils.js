@@ -19,7 +19,7 @@ export const customStyles = {
   container: (provided, state) => ({
     ...provided,
     width: 115,
-    border: '5px solid red',
+    border: '1px solid red',
   }),
   option: (provided, state) => ({
     padding: 10,

@@ -1,48 +1,58 @@
-import { useEffect, useRef, useState } from 'react';
-const log = (...args) => console.warn(...args);
+import { useState, useEffect, useReducer } from 'react';
+import axios from 'axios';
 
-const UseFetch = (url, options) => {
+const FETCH_DATA = 'FETCH_DATA';
+const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
 
-  const abortControllerRef = useRef(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [response, setResponse] = useState(null);
+const dataFetchReducer = (state, action) => {
+  switch (action.type) {
+    case FETCH_DATA:
+      return {
+        ...state,
+        dataLoading: true,
+        dataLoadingFailed: false,
+      };
+    case FETCH_DATA_SUCCESS:
+      return {
+        ...state,
+        dataLoading: false,
+        dataLoadingFailed: false,
+        data: action.payload,
+      };
+    case FETCH_DATA_ERROR:
+      return {
+        ...state,
+        dataLoading: false,
+        dataLoadingFailed: true,
+      };
+    default:
+      throw new Error();
+  }
+};
 
-  useEffect(() => {
-    abortControllerRef.current = new AbortController();
+export const UseFetch = (url, initialData) => {
+  const [state, dispatch] = useReducer(dataFetchReducer, {
+    dataLoading: false,
+    dataLoadingFailed: false,
+    data: initialData,
   });
 
   useEffect(() => {
-    const { signal } = abortControllerRef.current;
-    const makeFetchHappen = async () => {
+    const fetchData = async () => {
+      dispatch({ type: FETCH_DATA });
       try {
-        if (!url) {
-          throw new Error(`'url' is required for fetching data`);
-        }
-        const response = await fetch(url, { ...options, signal });
-        let data;
-        try {
-          data = await response.json();
-        } catch (error) {
-          log(`useFetch: can't parse JSON, trying parsing response as text`);
-          data = await response.text();
-        } finally {
-          setResponse(data);
-        }
+        const result = await axios(url);
+        dispatch({ type: FETCH_DATA_SUCCESS, payload: result.data });
       } catch (error) {
-        log(`useFetch: ${error.message}`);
-        setError(error);
-      } finally {
-        setLoading(false);
+        dispatch({ type: FETCH_DATA_ERROR });
       }
     };
 
-    makeFetchHappen();
+    fetchData();
+  }, [url]);
 
-    return () => abortControllerRef.current.abort();
-
-  }, [url, options]);
-  return [loading, response, error];
+  return state;
 };
 
 export default UseFetch;

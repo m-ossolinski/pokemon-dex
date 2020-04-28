@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import { PokemonPage } from './PokemonPage';
 import PokemonDataProvider from "../../contexts/PokemonDataContext";
 
-
 export const pokemonPagePath = '/';
 
 export const PokemonPageRoute = () => {
